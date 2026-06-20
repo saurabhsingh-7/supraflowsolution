@@ -91,9 +91,11 @@
   .nav-links .dropdown:hover .dropdown-menu { display: block; }
 
   .nav-links .dropdown-menu a {
-    display: block; padding: 10px 20px;
+    display: flex; align-items: center; gap: 10px; padding: 10px 20px;
     font-size: 13px; white-space: nowrap;
   }
+
+  .nav-links .dropdown-menu a img { width: 18px; height: 18px; object-fit: contain; }
 
   .nav-links .dropdown-menu a:hover { background: var(--purple-ghost); }
 
@@ -106,15 +108,19 @@
 
   .nav-cta:hover { background: var(--purple-mid) !important; color: white !important; }
 
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
   .hamburger span { width: 24px; height: 2px; background: var(--gray-900); border-radius: 2px; transition: .3s; }
+
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
   /* ── HERO ── */
   #hero {
     min-height: 100vh;
     background: linear-gradient(135deg, var(--purple-deep) 0%, var(--purple-mid) 50%, #1e1b4b 100%);
     display: flex; align-items: center;
-    padding: 100px 5% 60px;
+    padding: 120px 5% 60px;
     position: relative; overflow: hidden;
   }
 
@@ -125,13 +131,7 @@
     background-size: 60px 60px;
   }
 
-  .hero-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: .3;
-  }
-
+  .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .3; }
   .hero-orb-1 { width: 500px; height: 500px; background: var(--accent); top: -100px; right: -100px; }
   .hero-orb-2 { width: 300px; height: 300px; background: var(--purple-light); bottom: 50px; left: 200px; }
 
@@ -150,224 +150,156 @@
 
   .hero-eyebrow::before { content: '●'; font-size: 8px; color: #4ade80; }
 
-  h1.hero-title {
-    font-size: clamp(36px, 5vw, 64px); font-weight: 800;
-    color: white; margin-bottom: 24px; letter-spacing: -1px;
-  }
+  h1.hero-title { font-size: clamp(32px, 5vw, 64px); font-weight: 800; color: white; margin-bottom: 24px; letter-spacing: -1px; }
+  h1.hero-title span { background: linear-gradient(90deg, var(--purple-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-  h1.hero-title span {
-    background: linear-gradient(90deg, var(--purple-light), var(--accent));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-
-  .hero-desc {
-    color: rgba(255,255,255,.75); font-size: 18px;
-    max-width: 520px; margin-bottom: 40px; line-height: 1.7;
-  }
-
+  .hero-desc { color: rgba(255,255,255,.75); font-size: 18px; max-width: 520px; margin-bottom: 40px; line-height: 1.7; }
   .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
 
-  .btn-primary {
-    background: white; color: var(--purple-deep);
-    padding: 14px 28px; border-radius: 10px;
-    font-weight: 700; font-size: 15px; text-decoration: none;
-    transition: transform .2s, box-shadow .2s;
-    display: inline-block;
-  }
-
+  .btn-primary { background: white; color: var(--purple-deep); padding: 14px 28px; border-radius: 10px; font-weight: 700; font-size: 15px; text-decoration: none; transition: transform .2s, box-shadow .2s; display: inline-block; text-align: center; }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.2); }
 
-  .btn-outline {
-    border: 2px solid rgba(255,255,255,.4); color: white;
-    padding: 14px 28px; border-radius: 10px;
-    font-weight: 600; font-size: 15px; text-decoration: none;
-    transition: background .2s, border-color .2s;
-    display: inline-block;
-  }
-
+  .btn-outline { border: 2px solid rgba(255,255,255,.4); color: white; padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 15px; text-decoration: none; transition: background .2s, border-color .2s; display: inline-block; text-align: center; }
   .btn-outline:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.7); }
 
-  .hero-stats {
-    display: flex; gap: 32px; margin-top: 48px;
-    padding-top: 40px; border-top: 1px solid rgba(255,255,255,.15);
-  }
-
+  .hero-stats { display: flex; gap: 32px; margin-top: 48px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,.15); }
   .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: white; }
   .hero-stat-label { color: rgba(255,255,255,.6); font-size: 13px; }
 
   .hero-visual { display: flex; flex-direction: column; gap: 16px; }
-
+  
   .hero-card {
     background: rgba(255,255,255,.08);
     border: 1px solid rgba(255,255,255,.15);
-    border-radius: 16px; padding: 20px 24px;
+    border-radius: 16px; padding: 24px 28px;
     backdrop-filter: blur(10px);
+    display: flex; align-items: center; gap: 20px;
+    cursor: pointer;
   }
-
-  .hero-card-icon { font-size: 28px; margin-bottom: 10px; }
-  .hero-card h4 { color: white; font-size: 15px; margin-bottom: 4px; }
+  .hero-card .hero-card-icon { font-size: 32px; line-height: 1; flex-shrink: 0; }
+  .hero-card img.zoho-img { width: 110px; height: auto; max-height: 45px; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
+  .hero-card-text { display: flex; flex-direction: column; }
+  .hero-card h4 { color: white; font-size: 16px; margin-bottom: 4px; }
   .hero-card p { color: rgba(255,255,255,.6); font-size: 13px; }
 
   .hero-card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
   /* ── PARTNER LOGOS ── */
-  .partners-bar {
-    background: var(--gray-50);
-    padding: 32px 5%; border-bottom: 1px solid var(--gray-200);
+  .partners-bar { 
+    background: var(--white); 
+    padding: 36px 5%; 
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200); 
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
   }
-
-  .partners-bar-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: flex; align-items: center; gap: 48px; flex-wrap: wrap;
+  .partners-bar-inner { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: flex; 
+    align-items: center; 
+    gap: 40px; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+  }
+  .partners-bar p { 
+    font-size: 14px; 
+    color: var(--purple-deep); 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px; 
+    white-space: nowrap; 
+  }
+  .partner-badges-wrap {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
     justify-content: center;
   }
-
-  .partners-bar p {
-    font-size: 13px; color: var(--gray-400); font-weight: 500;
-    text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;
+  .partner-badge {
+    transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1);
   }
-
-  .partner-badge img {
-    height: 40px; opacity: .7;
-    filter: grayscale(30%);
-    transition: opacity .2s, filter .2s;
+  .partner-badge img { 
+    height: 48px; 
+    max-width: 100%; 
+    object-fit: contain; 
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.06));
   }
-
-  .partner-badge img:hover { opacity: 1; filter: none; }
+  .partner-badge:hover { 
+    transform: translateY(-3px);
+  }
 
   /* ── SECTION COMMON ── */
-  section { padding: 100px 5%; }
+  section { padding: 80px 5%; }
   .section-inner { max-width: 1200px; margin: 0 auto; }
-
-  .section-label {
-    display: inline-block;
-    background: var(--purple-pale);
-    color: var(--purple-bright);
-    font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
-    text-transform: uppercase; padding: 6px 16px; border-radius: 100px;
-    margin-bottom: 16px;
-  }
-
-  .section-title {
-    font-size: clamp(28px, 4vw, 48px); font-weight: 800;
-    color: var(--purple-deep); margin-bottom: 16px;
-    letter-spacing: -0.5px;
-  }
-
-  .section-subtitle {
-    font-size: 18px; color: var(--gray-600); max-width: 600px; line-height: 1.7;
-  }
-
-  .section-header { margin-bottom: 60px; }
+  .section-label { display: inline-block; background: var(--purple-pale); color: var(--purple-bright); font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 16px; }
+  .section-title { font-size: clamp(26px, 4vw, 44px); font-weight: 800; color: var(--purple-deep); margin-bottom: 16px; letter-spacing: -0.5px; }
+  .section-subtitle { font-size: 16px; color: var(--gray-600); max-width: 600px; line-height: 1.7; }
+  .section-header { margin-bottom: 48px; }
   .section-header.center { text-align: center; }
   .section-header.center .section-subtitle { margin: 0 auto; }
 
   /* ── ABOUT ── */
   #about { background: var(--white); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
   .about-visual { position: relative; }
-
-  .about-main-card {
-    background: linear-gradient(135deg, var(--purple-deep), var(--purple-mid));
-    border-radius: 20px; padding: 40px; color: white;
-  }
-
+  .about-main-card { background: linear-gradient(135deg, var(--purple-deep), var(--purple-mid)); border-radius: 20px; padding: 40px; color: white; }
   .about-main-card h3 { font-size: 22px; margin-bottom: 12px; }
   .about-main-card p { font-size: 14px; opacity: .8; line-height: 1.7; }
-
-  .about-float-card {
-    position: absolute; bottom: -24px; right: -24px;
-    background: white; border-radius: 16px; padding: 20px 24px;
-    box-shadow: 0 20px 40px rgba(0,0,0,.1);
-    border: 1px solid var(--gray-200);
-  }
-
+  .about-float-card { position: absolute; bottom: -24px; right: -24px; background: white; border-radius: 16px; padding: 20px 24px; box-shadow: 0 20px 40px rgba(0,0,0,.1); border: 1px solid var(--gray-200); text-align: center; }
   .about-float-card .num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 800; color: var(--purple-bright); }
   .about-float-card .lbl { font-size: 13px; color: var(--gray-600); }
-
   .process-steps { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
   .process-step { display: flex; gap: 16px; align-items: flex-start; }
-
-  .step-num {
-    width: 40px; height: 40px; flex-shrink: 0;
-    background: var(--purple-pale);
-    color: var(--purple-bright); font-weight: 700; font-size: 14px;
-    border-radius: 10px; display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-  }
-
+  .step-num { width: 40px; height: 40px; flex-shrink: 0; background: var(--purple-pale); color: var(--purple-bright); font-weight: 700; font-size: 14px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; }
   .process-step h4 { font-size: 16px; color: var(--purple-deep); margin-bottom: 4px; }
   .process-step p { font-size: 14px; color: var(--gray-600); }
 
   /* ── SERVICES ── */
   #services { background: var(--purple-ghost); }
-  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  
   .service-card {
-    background: white; border-radius: 16px; padding: 32px;
+    background: white; border-radius: 16px; padding: 36px 32px;
     border: 1px solid var(--gray-200);
     transition: transform .2s, box-shadow .2s, border-color .2s;
     cursor: pointer;
   }
-
-  .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(124,58,237,.1);
-    border-color: var(--purple-light);
-  }
-
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(124,58,237,.1); border-color: var(--purple-light); }
+  
   .service-icon {
-    width: 56px; height: 56px; border-radius: 14px;
-    background: var(--purple-pale); display: flex; align-items: center;
-    justify-content: center; margin-bottom: 20px; padding: 10px;
-    font-size: 24px;
+    height: 52px; display: flex; align-items: center;
+    justify-content: flex-start; margin-bottom: 24px;
   }
+  .service-icon img.zoho-img { width: auto; max-width: 150px; height: 100%; max-height: 48px; object-fit: contain; }
 
-  .service-card h3 { font-size: 18px; color: var(--purple-deep); margin-bottom: 10px; }
+  .service-card h3 { font-size: 20px; color: var(--purple-deep); margin-bottom: 12px; }
   .service-card p { font-size: 14px; color: var(--gray-600); line-height: 1.7; }
-  .service-card .service-tag {
-    display: inline-block; margin-top: 16px;
-    background: var(--purple-pale); color: var(--purple-bright);
-    font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px;
-  }
+  .service-card .service-tag { display: inline-block; margin-top: 16px; background: var(--purple-pale); color: var(--purple-bright); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px; }
 
   /* ── ZOHO CERTIFICATIONS ── */
   #certifications { background: white; }
-  .cert-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 16px; }
-  .cert-card {
-    background: var(--purple-ghost); border-radius: 16px; padding: 32px 20px;
-    text-align: center; border: 1px solid var(--purple-pale);
-    transition: transform .2s, box-shadow .2s;
-  }
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 16px; }
+  .cert-card { background: var(--purple-ghost); border-radius: 16px; padding: 36px 24px; text-align: center; border: 1px solid var(--purple-pale); transition: transform .2s, box-shadow .2s; }
   .cert-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(124,58,237,.12); }
-  .cert-card .ico { font-size: 32px; margin-bottom: 12px; }
-  .cert-card p { font-size: 13px; color: var(--gray-600); font-weight: 500; }
+  
+  .cert-logo-wrap { height: 50px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+  .cert-card img.zoho-img { width: auto; max-width: 160px; height: 100%; max-height: 46px; object-fit: contain; }
+  .cert-card p { font-size: 14px; color: var(--gray-600); font-weight: 500; line-height: 1.4; }
+  .cert-card p strong { color: var(--purple-deep); font-weight: 700; }
 
   /* ── AI SOLUTIONS ── */
   #ai-solutions { background: linear-gradient(135deg, var(--purple-deep) 0%, #1e1b4b 100%); }
   #ai-solutions .section-title { color: white; }
   #ai-solutions .section-subtitle { color: rgba(255,255,255,.7); }
   #ai-solutions .section-label { background: rgba(255,255,255,.15); color: var(--purple-light); }
-  .ai-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-
-  .ai-card {
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 20px; padding: 32px;
-    backdrop-filter: blur(6px);
-    transition: background .2s, border-color .2s;
-    cursor: pointer;
-  }
-
+  .ai-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+  .ai-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.15); border-radius: 20px; padding: 32px; backdrop-filter: blur(6px); transition: background .2s, border-color .2s; cursor: pointer; }
   .ai-card:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); }
   .ai-card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-
-  .ai-card-ico {
-    width: 48px; height: 48px; border-radius: 12px;
-    background: linear-gradient(135deg, var(--purple-bright), var(--accent));
-    display: flex; align-items: center; justify-content: center; font-size: 22px;
-    flex-shrink: 0;
-  }
+  
+  .ai-card-ico { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--purple-bright), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .ai-card-ico img.zoho-img { width: auto; max-width: 100%; height: 26px; object-fit: contain; }
 
   .ai-card h3 { color: white; font-size: 18px; }
   .ai-card p { color: rgba(255,255,255,.7); font-size: 14px; line-height: 1.7; }
@@ -377,44 +309,26 @@
   /* ── SOLUTIONS ── */
   #solutions { background: var(--gray-50); }
   .solutions-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
-
-  .tab-btn {
-    padding: 10px 20px; border-radius: 8px; border: 1px solid var(--gray-200);
-    background: white; color: var(--gray-600); font-size: 14px; font-weight: 500;
-    cursor: pointer; transition: .2s;
-  }
-
+  .tab-btn { padding: 10px 20px; border-radius: 8px; border: 1px solid var(--gray-200); background: white; color: var(--gray-600); font-size: 14px; font-weight: 500; cursor: pointer; transition: .2s; display: inline-flex; align-items: center; }
   .tab-btn.active, .tab-btn:hover { background: var(--purple-bright); color: white; border-color: var(--purple-bright); }
   .solution-panel { display: none; }
   .solution-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
   .solution-content h3 { font-size: 26px; color: var(--purple-deep); margin-bottom: 16px; }
   .solution-content p { font-size: 15px; color: var(--gray-600); line-height: 1.8; margin-bottom: 20px; }
+  .solutions-tabs img.tab-zoho-img { width: auto; height: 18px; max-width: 60px; object-fit: contain; margin-right: 8px; }
   .solution-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
   .solution-features li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--gray-600); }
   .solution-features li::before { content: '✓'; color: var(--purple-bright); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
   .solution-visual { background: white; border-radius: 16px; padding: 32px; border: 1px solid var(--gray-200); }
   .workflow-step { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--gray-100); }
   .workflow-step:last-child { border-bottom: none; }
-  .wf-num {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--purple-pale); color: var(--purple-bright);
-    font-size: 12px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
+  .wf-num { width: 28px; height: 28px; border-radius: 50%; background: var(--purple-pale); color: var(--purple-bright); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .workflow-step p { font-size: 13px; color: var(--gray-600); }
 
   /* ── INDUSTRIES ── */
   #industries { background: white; }
-  .industry-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-
-  .industry-card {
-    border-radius: 14px; padding: 28px 20px; text-align: center;
-    border: 1px solid var(--gray-200);
-    transition: all .2s; cursor: pointer;
-    background: white;
-  }
-
+  .industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .industry-card { border-radius: 14px; padding: 28px 20px; text-align: center; border: 1px solid var(--gray-200); transition: all .2s; cursor: pointer; background: white; }
   .industry-card:hover { border-color: var(--purple-light); background: var(--purple-ghost); transform: translateY(-3px); }
   .industry-card .ico { font-size: 32px; margin-bottom: 12px; }
   .industry-card h4 { font-size: 15px; color: var(--purple-deep); margin-bottom: 6px; }
@@ -422,18 +336,20 @@
 
   /* ── TRAINING ── */
   #training { background: var(--purple-ghost); }
-  .training-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .training-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
   .training-card { background: white; border-radius: 14px; padding: 24px; border: 1px solid var(--gray-200); display: flex; flex-direction: column; gap: 8px; cursor: pointer; }
-  .training-card .ico { font-size: 28px; margin-bottom: 4px; }
+  .training-card .train-logo-wrap { height: 36px; display: flex; align-items: center; margin-bottom: 6px; }
+  .training-card img.zoho-img { width: auto; max-width: 120px; height: 100%; object-fit: contain; }
   .training-card h4 { font-size: 16px; color: var(--purple-deep); }
   .training-card p { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
 
   /* ── BLOGS ── */
   #blogs { background: white; }
-  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
   .blog-card { border-radius: 16px; overflow: hidden; border: 1px solid var(--gray-200); transition: transform .2s, box-shadow .2s; cursor: pointer; }
   .blog-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,.08); }
-  .blog-thumb { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+  .blog-thumb { height: 180px; display: flex; align-items: center; justify-content: center; padding: 40px; }
+  .blog-thumb img.zoho-img { width: auto; max-width: 140px; height: 50px; object-fit: contain; }
   .blog-body { padding: 24px; }
   .blog-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--purple-bright); margin-bottom: 10px; }
   .blog-card h3 { font-size: 17px; color: var(--gray-900); margin-bottom: 10px; line-height: 1.4; }
@@ -442,7 +358,7 @@
 
   /* ── TESTIMONIALS ── */
   #testimonials { background: var(--purple-ghost); }
-  .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
   .testimonial-card { background: white; border-radius: 16px; padding: 32px; border: 1px solid var(--gray-200); }
   .testimonial-card .stars { color: #F59E0B; font-size: 16px; margin-bottom: 16px; }
   .testimonial-card blockquote { font-size: 15px; color: var(--gray-600); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
@@ -453,15 +369,15 @@
 
   /* ── CONTACT ── */
   #contact { background: white; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; align-items: start; }
   .contact-info h2 { font-size: 32px; color: var(--purple-deep); margin-bottom: 16px; }
   .contact-info p { font-size: 15px; color: var(--gray-600); margin-bottom: 32px; line-height: 1.7; }
   .contact-detail { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
   .contact-detail-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--purple-pale); color: var(--purple-bright); font-size: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .contact-detail h4 { font-size: 13px; color: var(--gray-400); font-weight: 500; margin-bottom: 2px; }
   .contact-detail p { font-size: 15px; color: var(--gray-900); font-weight: 500; }
-  .google-form-wrapper { border-radius: 16px; border: 1px solid var(--gray-200); box-shadow: 0 8px 30px rgba(0,0,0,.06); height: 600px; overflow-y: auto; overflow-x: hidden; }
-  .google-form-wrapper iframe { display: block; width: 100%; border: none; }
+  .google-form-wrapper { border-radius: 16px; border: 1px solid var(--gray-200); box-shadow: 0 8px 30px rgba(0,0,0,.06); height: 650px; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+  .google-form-wrapper iframe { display: block; width: 100%; height: 100%; border: none; }
 
   /* ── FOOTER ── */
   footer { background: var(--purple-deep); color: white; padding: 64px 5% 32px; }
@@ -473,72 +389,65 @@
   .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
   .footer-col ul a { color: rgba(255,255,255,.7); font-size: 14px; text-decoration: none; transition: color .2s; cursor: pointer; }
   .footer-col ul a:hover { color: white; }
-  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-  .footer-bottom p { font-size: 13px; color: rgba(255,255,255,.5); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .footer-bottom p { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.6; }
   .social-links { display: flex; gap: 12px; }
   .social-link { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.1); color: white; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; transition: background .2s; }
   .social-link:hover { background: var(--purple-bright); }
 
-  /* ── MOBILE MENU ── */
-  .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: white; z-index: 99; padding: 20px 5%; border-bottom: 1px solid var(--gray-200); flex-direction: column; gap: 16px; }
+  /* ── MOBILE MENU SYSTEM ── */
+  .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; bottom: 0; background: white; z-index: 99; padding: 30px 5%; flex-direction: column; gap: 20px; overflow-y: auto; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a { color: var(--gray-900); text-decoration: none; font-size: 16px; font-weight: 500; }
+  .mobile-menu a { display: flex; align-items: center; gap: 12px; color: var(--gray-900); text-decoration: none; font-size: 18px; font-weight: 600; padding: 8px 0; border-bottom: 1px solid var(--gray-100); }
+  .mobile-menu a img.zoho-m-img { width: 22px; height: 22px; object-fit: contain; }
+  .mobile-menu .mobile-cta { background: var(--purple-bright); color: white; text-align: center; border-radius: 8px; padding: 12px; margin-top: 10px; border-bottom: none; display: block; }
 
-  /* ── DYNAMIC PAGE OVERLAY PANEL ── */
-  .subpage-view {
-    position: fixed; inset: 0; top: 70px; background: var(--white); z-index: 90;
-    display: none; overflow-y: auto; padding: 60px 10%;
-  }
+  /* ── DYNAMIC SUBPAGE OVERLAY PANEL ── */
+  .subpage-view { position: fixed; inset: 0; top: 70px; background: var(--white); z-index: 95; display: none; overflow-y: auto; padding: 40px 5%; }
   .subpage-view.active { display: block; animation: fadeIn .3s ease forwards; }
-  .close-panel-btn {
-    display: inline-flex; align-items: center; gap: 8px; background: var(--gray-100);
-    border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600;
-    color: var(--purple-deep); cursor: pointer; margin-bottom: 30px; transition: 0.2s;
-  }
+  .close-panel-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--gray-100); border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; color: var(--purple-deep); cursor: pointer; margin-bottom: 30px; transition: 0.2s; }
   .close-panel-btn:hover { background: var(--purple-pale); }
   .subpage-content { max-width: 850px; margin: 0 auto; }
-  .subpage-content h1 { font-size: 42px; color: var(--purple-deep); margin-bottom: 16px; }
+  .subpage-content h1 { font-size: clamp(28px, 5vw, 42px); color: var(--purple-deep); margin-bottom: 16px; }
   .subpage-meta { font-size: 14px; color: var(--gray-600); margin-bottom: 40px; border-bottom: 1px solid var(--gray-200); padding-bottom: 16px; }
   .subpage-body { font-size: 16px; color: var(--gray-900); line-height: 1.8; }
   .subpage-body p { margin-bottom: 24px; }
-  .subpage-body h2 { font-size: 24px; color: var(--purple-mid); margin: 36px 0 16px; }
+  .subpage-body h2 { font-size: 22px; color: var(--purple-mid); margin: 36px 0 16px; }
   .subpage-body ul, .subpage-body ol { margin-left: 20px; margin-bottom: 24px; }
   .subpage-body li { margin-bottom: 8px; }
 
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+  /* ── MEDIA EXPLICIT RESPONSIVE OVERRIDES ── */
   @media (max-width: 1024px) {
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .cert-grid { grid-template-columns: repeat(2, 1fr); }
-    .industry-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
   }
 
   @media (max-width: 768px) {
     .nav-links { display: none; }
     .hamburger { display: flex; }
-    .hero-inner { grid-template-columns: 1fr; }
+    #hero { padding-top: 110px; min-height: auto; }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .hero-desc { margin: 0 auto 32px; }
+    .hero-btns { justify-content: center; }
+    .hero-stats { justify-content: space-around; gap: 16px; margin-top: 32px; }
     .hero-visual { display: none; }
-    .about-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .about-float-card { display: none; }
-    .services-grid { grid-template-columns: 1fr; }
-    .ai-grid { grid-template-columns: 1fr; }
-    .solution-panel.active { grid-template-columns: 1fr; }
-    .industry-grid { grid-template-columns: repeat(2, 1fr); }
-    .blog-grid { grid-template-columns: 1fr; }
-    .training-grid { grid-template-columns: 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr; }
-    .cert-grid { grid-template-columns: repeat(2, 1fr); }
+    .solution-panel.active { grid-template-columns: 1fr; gap: 32px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .google-form-wrapper { height: 500px; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; text-align: center; gap: 16px; }
   }
-
+  
   .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
+<!-- NAV BAR -->
 <nav>
   <a href="#hero" class="nav-logo" onclick="closePagePanel()">
     <span class="logo-text">Supra<span>flow</span></span>
@@ -548,50 +457,53 @@
     <li class="dropdown">
       <a href="#services" onclick="closePagePanel()">Services ▾</a>
       <div class="dropdown-menu">
-        <a onclick="navigateToContent('services', 'crm')">Zoho CRM Implementation</a>
-        <a onclick="navigateToContent('services', 'books')">Zoho Books & Finance</a>
-        <a onclick="navigateToContent('services', 'creator')">Zoho Creator Apps</a>
-        <a onclick="navigateToContent('services', 'hr')">Zoho People & Payroll</a>
-        <a onclick="navigateToContent('services', 'analytics')">Zoho Analytics & BI</a>
-        <a onclick="navigateToContent('services', 'desk')">Zoho Desk Integration</a>
+        <a onclick="navigateToContent('services', 'crm')"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/crm.svg" alt="CRM"> Zoho CRM Implementation</a>
+        <a onclick="navigateToContent('services', 'books')"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/books.svg" alt="Books"> Zoho Books & Finance</a>
+        <a onclick="navigateToContent('services', 'creator')"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" alt="Creator"> Zoho Creator Apps</a>
+        <a onclick="navigateToContent('services', 'hr')"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/people.svg" alt="People"> Zoho People & Payroll</a>
+        <a onclick="navigateToContent('services', 'analytics')"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/analytics.svg" alt="Analytics"> Zoho Analytics & BI</a>
+        <a onclick="navigateToContent('services', 'desk')"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/desk.svg" alt="Desk"> Zoho Desk Integration</a>
       </div>
     </li>
     <li class="dropdown">
       <a href="#solutions" onclick="closePagePanel()">Solutions ▾</a>
       <div class="dropdown-menu">
-        <a onclick="navigateToContent('solutions', 'payroll')">Custom Payroll Engine</a>
-        <a onclick="navigateToContent('solutions', 'manufacturing')">Manufacturing Lifecycle App</a>
-        <a onclick="navigateToContent('solutions', 'procurement')">AI E-Procurement Engine</a>
-        <a onclick="navigateToContent('solutions', 'deskai')">Vector Embeddings for Desk</a>
-        <a onclick="navigateToContent('solutions', 'voiceagent')">AI Voice Lead Agent</a>
+        <a onclick="navigateToContent('solutions', 'payroll')"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" alt="Creator"> Custom Payroll Engine</a>
+        <a onclick="navigateToContent('solutions', 'manufacturing')"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/inventory.svg" alt="Inventory"> Manufacturing App</a>
+        <a onclick="navigateToContent('solutions', 'procurement')">⚙️ AI E-Procurement Engine</a>
+        <a onclick="navigateToContent('solutions', 'deskai')"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/desk.svg" alt="Desk"> Vector Embeddings for Desk</a>
+        <a onclick="navigateToContent('solutions', 'voiceagent')">🎙️ AI Voice Lead Agent</a>
       </div>
     </li>
     <li class="dropdown">
       <a href="#industries" onclick="closePagePanel()">Industries ▾</a>
       <div class="dropdown-menu">
-        <a onclick="navigateToContent('industries', 'manufacturing')">Manufacturing</a>
-        <a onclick="navigateToContent('industries', 'realestate')">Real Estate</a>
-        <a onclick="navigateToContent('industries', 'retail')">Retail & E-Commerce</a>
-        <a onclick="navigateToContent('industries', 'it')">IT & SaaS Enterprises</a>
+        <a onclick="navigateToContent('industries', 'manufacturing')">🏭 Manufacturing</a>
+        <a onclick="navigateToContent('industries', 'realestate')">🏢 Real Estate</a>
+        <a onclick="navigateToContent('industries', 'retail')">🛒 Retail & E-Commerce</a>
+        <a onclick="navigateToContent('industries', 'it')">💻 IT & SaaS Enterprises</a>
       </div>
     </li>
     <li><a href="#blogs" onclick="closePagePanel()">Blogs</a></li>
     <li><a href="#contact" class="nav-cta" onclick="closePagePanel()">Contact Us</a></li>
   </ul>
-  <div class="hamburger" onclick="toggleMenu()">
+  <div class="hamburger" id="hamburgerMenu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 </nav>
 
+<!-- MOBILE NAVIGATION DRAWER -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#about" onclick="toggleMenu(); closePagePanel()">About</a>
-  <a href="#services" onclick="toggleMenu(); closePagePanel()">Services</a>
-  <a href="#solutions" onclick="toggleMenu(); closePagePanel()">Solutions</a>
-  <a href="#industries" onclick="toggleMenu(); closePagePanel()">Industries</a>
-  <a href="#blogs" onclick="toggleMenu(); closePagePanel()">Blogs</a>
-  <a href="#contact" onclick="toggleMenu(); closePagePanel()">Contact</a>
+  <a href="#about" onclick="toggleMenu(); closePagePanel()">About Our Firm</a>
+  <a onclick="toggleMenu(); navigateToContent('services', 'crm')"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/crm.svg" class="zoho-m-img" alt="CRM"> Zoho CRM Service</a>
+  <a onclick="toggleMenu(); navigateToContent('services', 'creator')"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" class="zoho-m-img" alt="Creator"> Custom Apps Development</a>
+  <a onclick="toggleMenu(); navigateToContent('solutions', 'payroll')">💎 Enterprise Solutions</a>
+  <a onclick="toggleMenu(); navigateToContent('industries', 'manufacturing')">🏭 Vertical Industries</a>
+  <a href="#blogs" onclick="toggleMenu(); closePagePanel()">Technical Blogs</a>
+  <a href="#contact" class="mobile-cta" onclick="toggleMenu(); closePagePanel()">Contact Technical Desk</a>
 </div>
 
+<!-- CONTAINER FOR DYNAMIC SUBPAGE ENGINE -->
 <div id="subpageViewContainer" class="subpage-view">
   <button class="close-panel-btn" onclick="closePagePanel()">← Back to Home Page</button>
   <div class="subpage-content">
@@ -601,8 +513,10 @@
   </div>
 </div>
 
+<!-- HOME PAGE SECTIONS CONTAINER -->
 <div id="mainPageContentContainer">
 
+  <!-- HERO SECTION -->
   <section id="hero">
     <div class="hero-bg-grid"></div>
     <div class="hero-orb hero-orb-1"></div>
@@ -634,42 +548,54 @@
       <div class="hero-visual">
         <div class="hero-card" onclick="navigateToContent('solutions', 'voiceagent')">
           <div class="hero-card-icon">🤖</div>
-          <h4>AI-Powered Business Automation</h4>
-          <p>From voice agents to vector search — cutting-edge AI built on Zoho Suite</p>
+          <div class="hero-card-text">
+            <h4>AI-Powered Business Automation</h4>
+            <p>From voice agents to vector search — cutting-edge AI built on Zoho Suite</p>
+          </div>
         </div>
         <div class="hero-card-row">
           <div class="hero-card" onclick="navigateToContent('services', 'crm')">
-            <div class="hero-card-icon">⚡</div>
-            <h4>Zoho CRM</h4>
-            <p>End-to-end implementation</p>
+            <img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/crm.svg" class="zoho-img" alt="Zoho CRM">
+            <div class="hero-card-text">
+              <h4>Zoho CRM</h4>
+              <p>End-to-end setups</p>
+            </div>
           </div>
           <div class="hero-card" onclick="navigateToContent('services', 'creator')">
-            <div class="hero-card-icon">🏗️</div>
-            <h4>Zoho Creator</h4>
-            <p>Custom apps & extensions</p>
+            <img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" class="zoho-img" alt="Zoho Creator">
+            <div class="hero-card-text">
+              <h4>Zoho Creator</h4>
+              <p>Custom applications</p>
+            </div>
           </div>
         </div>
         <div class="hero-card" onclick="navigateToContent('training', 'creator')">
           <div class="hero-card-icon">🎓</div>
-          <h4>Zoho Certified Trainers</h4>
-          <p>Hands-on architectural training across the complete Zoho enterprise suite</p>
+          <div class="hero-card-text">
+            <h4>Zoho Certified Trainers</h4>
+            <p>Hands-on architectural training across the complete enterprise product matrix</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- SERVED ALONGSIDE PARTNERS BAR (References: image_78f786.png - Authorized Partner Removed) -->
   <div class="partners-bar">
     <div class="partners-bar-inner">
-      <p>Served alongside</p>
-      <div class="partner-badge">
-        <img src="https://fristinetech.com/wp-content/uploads/2024/03/premium-badge-new-1280x378.png" alt="Zoho Premium Partner" title="Zoho Premium Partner">
-      </div>
-      <div class="partner-badge">
-        <img src="https://www.pfc-group.com/advanced-badge-new.png" alt="Zoho Advanced Partner" title="Zoho Advanced Partner">
+      <p>Served Alongside</p>
+      <div class="partner-badges-wrap">
+        <div class="partner-badge">
+          <img src="https://fristinetech.com/wp-content/uploads/2024/03/premium-badge-new-1280x378.png" alt="Zoho Premium Partner">
+        </div>
+        <div class="partner-badge">
+          <img src="https://www.pfc-group.com/advanced-badge-new.png" alt="Zoho Advanced Partner">
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- ABOUT SECTION -->
   <section id="about">
     <div class="section-inner">
       <div class="about-grid">
@@ -724,6 +650,7 @@
     </div>
   </section>
 
+  <!-- SERVICES SECTION -->
   <section id="services">
     <div class="section-inner">
       <div class="section-header center fade-in">
@@ -733,37 +660,37 @@
       </div>
       <div class="services-grid">
         <div class="service-card fade-in" onclick="navigateToContent('services', 'crm')">
-          <div class="service-icon">⚡</div>
+          <div class="service-icon"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/crm.svg" class="zoho-img" alt="CRM"></div>
           <h3>Zoho CRM Implementation</h3>
           <p>Streamline your sales pipeline, automate lead tracking, and improve customer engagement with a CRM tailored to your exact workflow.</p>
           <span class="service-tag">Sales & Marketing</span>
         </div>
         <div class="service-card fade-in" onclick="navigateToContent('services', 'books')">
-          <div class="service-icon">📚</div>
+          <div class="service-icon"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/books.svg" class="zoho-img" alt="Books"></div>
           <h3>Zoho Books & Finance</h3>
           <p>Automate invoicing, bank reconciliation, journal entries, and tax compliance. We integrate Books with CRM and Inventory modules seamlessly.</p>
           <span class="service-tag">Accounting</span>
         </div>
         <div class="service-card fade-in" onclick="navigateToContent('services', 'creator')">
-          <div class="service-icon">🏗️</div>
+          <div class="service-icon"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" class="zoho-img" alt="Creator"></div>
           <h3>Zoho Creator Custom Apps</h3>
           <p>Build bespoke business applications — from manufacturing management to payroll systems — with our expert low-code developers.</p>
           <span class="service-tag">Low-Code Development</span>
         </div>
         <div class="service-card fade-in" onclick="navigateToContent('services', 'hr')">
-          <div class="service-icon">👥</div>
+          <div class="service-icon"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/people.svg" class="zoho-img" alt="People"></div>
           <h3>Zoho People & Payroll</h3>
           <p>End-to-end HR suite implementation including recruitment, onboarding, attendance, and customized local payroll system modules.</p>
           <span class="service-tag">HR & Payroll</span>
         </div>
         <div class="service-card fade-in" onclick="navigateToContent('services', 'analytics')">
-          <div class="service-icon">📊</div>
+          <div class="service-icon"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/analytics.svg" class="zoho-img" alt="Analytics"></div>
           <h3>Zoho Analytics & BI</h3>
           <p>Unlock actionable insights with custom dashboards pulling data from CRM, Books, Inventory, and external third-party SQL sources.</p>
           <span class="service-tag">Business Intelligence</span>
         </div>
         <div class="service-card fade-in" onclick="navigateToContent('services', 'desk')">
-          <div class="service-icon">🎟️</div>
+          <div class="service-icon"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/desk.svg" class="zoho-img" alt="Desk"></div>
           <h3>Zoho Desk Enhancement</h3>
           <p>Supercharge your support team with advanced automated SLA rules, multi-department ticket workflows, and smart client portal structures.</p>
           <span class="service-tag">Support AI</span>
@@ -772,6 +699,7 @@
     </div>
   </section>
 
+  <!-- CERTIFICATIONS CREDENTIALS -->
   <section id="certifications">
     <div class="section-inner">
       <div class="section-header center fade-in">
@@ -781,25 +709,34 @@
       </div>
       <div class="cert-grid fade-in">
         <div class="cert-card">
-          <div class="ico">🛡️</div>
+          <div class="cert-logo-wrap">
+            <img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/crm.svg" class="zoho-img" alt="CRM">
+          </div>
           <p>Zoho CRM<br><strong>Certified Developer</strong></p>
         </div>
         <div class="cert-card">
-          <div class="ico">⚙️</div>
+          <div class="cert-logo-wrap">
+            <img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" class="zoho-img" alt="Creator">
+          </div>
           <p>Zoho Creator<br><strong>Certified Developer</strong></p>
         </div>
         <div class="cert-card">
-          <div class="ico">📈</div>
+          <div class="cert-logo-wrap">
+            <img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/books.svg" class="zoho-img" alt="Books">
+          </div>
           <p>Zoho Books<br><strong>Certified Consultant</strong></p>
         </div>
         <div class="cert-card">
-          <div class="ico">💎</div>
+          <div class="cert-logo-wrap">
+            <img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/analytics.svg" class="zoho-img" alt="Analytics">
+          </div>
           <p>Zoho Analytics<br><strong>Certified Expert</strong></p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- AI SOLUTIONS SECTION -->
   <section id="ai-solutions">
     <div class="section-inner">
       <div class="section-header center fade-in">
@@ -813,7 +750,7 @@
             <div class="ai-card-ico">🎙️</div>
             <h3>AI Voice Lead Agent</h3>
           </div>
-          <p>Our ElevenLabs-powered voice agent autonomously calls leads, speaks naturally as a sales rep, and classifies prospects directly into your CRM.</p>
+          <p>Our ElevenLabs-powered voice agent autonomously calls leads, speaks naturally as a sales rep, and classifies prospects directly into your CRM tracking module.</p>
           <div class="ai-benefits">
             <span class="ai-benefit">ElevenLabs TTS</span>
             <span class="ai-benefit">Lead Scoring</span>
@@ -822,7 +759,7 @@
         </div>
         <div class="ai-card" onclick="navigateToContent('solutions', 'deskai')">
           <div class="ai-card-head">
-            <div class="ai-card-ico">🎟️</div>
+            <div class="ai-card-ico"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/desk.svg" class="zoho-img" alt="Desk"></div>
             <h3>Vector-Enhanced Zoho Desk</h3>
           </div>
           <p>Using AI-driven vector embeddings, we analyze support tickets semantically to detect recurring issues and auto-link related problems instantly.</p>
@@ -836,6 +773,7 @@
     </div>
   </section>
 
+  <!-- CASE STUDIES / SOLUTIONS TAB CONTROLS -->
   <section id="solutions">
     <div class="section-inner">
       <div class="section-header fade-in">
@@ -844,13 +782,14 @@
         <p class="section-subtitle">Real architectural platforms solving complex business problems — powered by Zoho Creator and advanced Deluge scripting workflows.</p>
       </div>
       <div class="solutions-tabs">
-        <button class="tab-btn active" onclick="showSolution(0)">Payroll Management</button>
-        <button class="tab-btn" onclick="showSolution(1)">Manufacturing App</button>
-        <button class="tab-btn" onclick="showSolution(2)">E-Procurement AI</button>
-        <button class="tab-btn" onclick="showSolution(3)">Zoho Desk AI</button>
-        <button class="tab-btn" onclick="showSolution(4)">Voice Lead Agent</button>
+        <button class="tab-btn active" onclick="showSolution(0)"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" class="tab-zoho-img" alt="Creator">Payroll Management</button>
+        <button class="tab-btn" onclick="showSolution(1)"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/inventory.svg" class="tab-zoho-img" alt="Inventory">Manufacturing App</button>
+        <button class="tab-btn" onclick="showSolution(2)">⚙️ E-Procurement AI</button>
+        <button class="tab-btn" onclick="showSolution(3)"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/desk.svg" class="tab-zoho-img" alt="Desk">Zoho Desk AI</button>
+        <button class="tab-btn" onclick="showSolution(4)">🎙️ Voice Lead Agent</button>
       </div>
 
+      <!-- Tab Content Panel 0 -->
       <div class="solution-panel active" id="sol-0" onclick="navigateToContent('solutions', 'payroll')">
         <div class="solution-content">
           <h3>Custom Payroll Management on Zoho Creator</h3>
@@ -864,15 +803,16 @@
         <div class="solution-visual">
           <h4 style="font-size:15px;color:var(--purple-deep);margin-bottom:20px;">Payroll Workflow Structure</h4>
           <div class="workflow-step"><div class="wf-num">1</div><p>Employee master record synced from Zoho People</p></div>
-          <div class="workflow-step"><div class="wf-num">2</div><p>Formula-based components match localized compliance</p></div>
+          <div class="workflow-step"><div class="wf-num">2</div><p>Formula-based components match localized compliance rules</p></div>
           <div class="workflow-step"><div class="wf-num">3</div><p>Journal Entries programmatically pushed to Zoho Books API</p></div>
         </div>
       </div>
 
+      <!-- Tab Content Panel 1 -->
       <div class="solution-panel" id="sol-1" onclick="navigateToContent('solutions', 'manufacturing')">
         <div class="solution-content">
           <h3>Manufacturing Operations Application</h3>
-          <p>A multi-level application digitalizing full product life cycles. Converts multi-tier structural Bills of Materials (BOM) to production orders with one-click rules.</p>
+          <p>A multi-level application digitalizing full product life cycles. Converts multi-tier structural Bills of Materials (BOM) to production orders with one-click rules inside your inventory hub.</p>
           <ul class="solution-features">
             <li>Multi-level recursive Bill of Materials configuration hooks</li>
             <li>Automatic workload distribution optimization across workcenters</li>
@@ -881,12 +821,13 @@
         </div>
         <div class="solution-visual">
           <h4 style="font-size:15px;color:var(--purple-deep);margin-bottom:20px;">Manufacturing Run Pattern</h4>
-          <div class="workflow-step"><div class="wf-num">1</div><p>Configure complete multi-tier BOM mapping</p></div>
+          <div class="workflow-step"><div class="wf-num">1</div><p>Configure complete multi-tier BOM asset mapping</p></div>
           <div class="workflow-step"><div class="wf-num">2</div><p>Convert orders instantly into Workcenter Assignments</p></div>
           <div class="workflow-step"><div class="wf-num">3</div><p>Auto-update material inventory counts inside Zoho Books</p></div>
         </div>
       </div>
 
+      <!-- Tab Content Panel 2 -->
       <div class="solution-panel" id="sol-2" onclick="navigateToContent('solutions', 'procurement')">
         <div class="solution-content">
           <h3>AI-Driven E-Procurement Engine</h3>
@@ -900,15 +841,16 @@
         <div class="solution-visual">
           <h4 style="font-size:15px;color:var(--purple-deep);margin-bottom:20px;">E-Procurement Optimization</h4>
           <div class="workflow-step"><div class="wf-num">1</div><p>Vectorize specific line-item buyer requirements</p></div>
-          <div class="workflow-step"><div class="wf-num">2</div><p>Run automated cosine-similarity checks over merchant data</p></div>
+          <div class="workflow-step"><div class="wf-num">2</div><p>Run automated cosine-similarity checks over merchant data arrays</p></div>
           <div class="workflow-step"><div class="wf-num">3</div><p>Flag suspicious identical matching bid pricing structures</p></div>
         </div>
       </div>
 
+      <!-- Tab Content Panel 3 -->
       <div class="solution-panel" id="sol-3" onclick="navigateToContent('solutions', 'deskai')">
         <div class="solution-content">
           <h3>Semantic Vector Embedding Engine for Zoho Desk</h3>
-          <p>Integrates advanced machine learning vectors directly into Zoho support workflows. Analyzes customer inquiries semantically to identify patterns before traditional categorization.</p>
+          <p>Integrates advanced machine learning vectors directly into Zoho support workflows. Content-aware scanning analyzes customer inquiries semantically before traditional ticketing categorization.</p>
           <ul class="solution-features">
             <li>Transforms text patterns into mathematical semantic values</li>
             <li>Links structural matches directly into problem tickets</li>
@@ -919,14 +861,15 @@
           <h4 style="font-size:15px;color:var(--purple-deep);margin-bottom:20px;">Desk AI Pattern</h4>
           <div class="workflow-step"><div class="wf-num">1</div><p>Inbound customer text tokenized and converted to matrix vectors</p></div>
           <div class="workflow-step"><div class="wf-num">2</div><p>Cross-references historical problem tickets for immediate clusters</p></div>
-          <div class="workflow-step"><div class="wf-num">3</div><p>Provides recommended resolution templates directly to help desk agent</p></div>
+          <div class="workflow-step"><div class="wf-num">3</div><p>Provides recommended resolution templates directly to active agent</p></div>
         </div>
       </div>
 
+      <!-- Tab Content Panel 4 -->
       <div class="solution-panel" id="sol-4" onclick="navigateToContent('solutions', 'voiceagent')">
         <div class="solution-content">
-          <h3>Autonomic Outbound AI Voice Lead Agent</h3>
-          <p>Combines realistic conversational audio generation models with CRM triggers. System auto-initiates customer outreach calls when inbound lead creation parameters match requirements.</p>
+          <h3>Autonomic Outbound AI Voice Lead Qualification</h3>
+          <p>Combines realistic conversational audio generation models with CRM triggers. System auto-initiates customer outreach calls when inbound lead creation parameters match metrics.</p>
           <ul class="solution-features">
             <li>Low-latency multi-turn state validation engines</li>
             <li>Categorizes perspective ratings (Hot, Warm, Cold) using context</li>
@@ -937,13 +880,13 @@
           <h4 style="font-size:15px;color:var(--purple-deep);margin-bottom:20px;">Voice Agent Lifecycle</h4>
           <div class="workflow-step"><div class="wf-num">1</div><p>CRM webhook detects qualifying target lead record</p></div>
           <div class="workflow-step"><div class="wf-num">2</div><p>Outbound audio dialer pipeline begins low-latency dialogue</p></div>
-          <div class="workflow-step"><div class="wf-num">3</div><p>Classified hot metrics immediately handoff to active reps</p></div>
+          <div class="workflow-step"><div class="wf-num">3</div><p>Classified hot metrics immediately handoff to active sales reps</p></div>
         </div>
       </div>
-
     </div>
   </section>
 
+  <!-- INDUSTRIES POWERED SECTION -->
   <section id="industries">
     <div class="section-inner">
       <div class="section-header center fade-in">
@@ -965,7 +908,7 @@
         <div class="industry-card" onclick="navigateToContent('industries', 'retail')">
           <div class="ico">🛒</div>
           <h4>Retail & E-Commerce</h4>
-          <p>Multi-location stock tracking, barcode parsing engines, and omni-channel purchase data collection.</p>
+          <p>Multi-location stock tracking, barcode parsing engines, and omni-channel purchase data aggregation.</p>
         </div>
         <div class="industry-card" onclick="navigateToContent('industries', 'it')">
           <div class="ico">💻</div>
@@ -976,6 +919,7 @@
     </div>
   </section>
 
+  <!-- TRAINING PROGRAMS SECTION -->
   <section id="training">
     <div class="section-inner">
       <div class="section-header center fade-in">
@@ -985,17 +929,23 @@
       </div>
       <div class="training-grid fade-in">
         <div class="training-card" onclick="navigateToContent('training', 'crm')">
-          <div class="ico">⚡</div>
+          <div class="train-logo-wrap">
+            <img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/crm.svg" class="zoho-img" alt="CRM">
+          </div>
           <h4>Zoho CRM Administration</h4>
           <p>Deep-dive architecture into layout criteria formulas, sandbox testing methods, and API integration design patterns.</p>
         </div>
         <div class="training-card" onclick="navigateToContent('training', 'creator')">
-          <div class="ico">🏗️</div>
+          <div class="train-logo-wrap">
+            <img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" class="zoho-img" alt="Creator">
+          </div>
           <h4>Deluge Scripting & Creator App Development</h4>
           <p>Advanced relational data modeling methods, subform data parsing, custom button code triggers, and external REST integrations.</p>
         </div>
         <div class="training-card" onclick="navigateToContent('training', 'books')">
-          <div class="ico">📚</div>
+          <div class="train-logo-wrap">
+            <img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/books.svg" class="zoho-img" alt="Books">
+          </div>
           <h4>Zoho Books Financial Architecture</h4>
           <p>Configuring advanced accounting custom fields, setting compliance templates, and automating bank parsing scripts.</p>
         </div>
@@ -1003,6 +953,7 @@
     </div>
   </section>
 
+  <!-- BLOGS SECTION -->
   <section id="blogs">
     <div class="section-inner">
       <div class="section-header center fade-in">
@@ -1012,16 +963,20 @@
       </div>
       <div class="blog-grid fade-in">
         <div class="blog-card" onclick="navigateToContent('blogs', 'manufacturing')">
-          <div class="blog-thumb" style="background:linear-gradient(135deg,#EDE9FE,#C4B5FD);">🏭</div>
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#EDE9FE,#C4B5FD);">
+            <img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" class="zoho-img" alt="Creator">
+          </div>
           <div class="blog-body">
-            <div class="blog-tag">Zoho Creator</div>
+            <div class="blog-tag">Change Management</div>
             <h3>Architecting Multi-Tier Manufacturing Apps on Zoho Creator</h3>
             <p>An in-depth guide detailing normalized table structures, cyclical lookup protection, and transactional performance rules within low-code systems.</p>
             <div class="blog-meta">By Saurabh Singh · June 2025</div>
           </div>
         </div>
         <div class="blog-card" onclick="navigateToContent('blogs', 'desk')">
-          <div class="blog-thumb" style="background:linear-gradient(135deg,#FAE8FF,#E879F9);">🤖</div>
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#FAE8FF,#E879F9);">
+            <img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/desk.svg" class="zoho-img" alt="Desk">
+          </div>
           <div class="blog-body">
             <div class="blog-tag">AI & Automation</div>
             <h3>Implementing Vector Similarity Searches Inside Zoho Desk</h3>
@@ -1030,9 +985,11 @@
           </div>
         </div>
         <div class="blog-card" onclick="navigateToContent('blogs', 'payroll')">
-          <div class="blog-thumb" style="background:linear-gradient(135deg,#DBEAFE,#93C5FD);">💰</div>
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#DBEAFE,#93C5FD);">
+            <img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" class="zoho-img" alt="Creator">
+          </div>
           <div class="blog-body">
-            <div class="blog-tag">Zoho Creator</div>
+            <div class="blog-tag">Compliance Engineers</div>
             <h3>Building Compliant Dynamic Salary Engines Using Deluge Map Scripting</h3>
             <p>Technical calculation strategies parsing localized payroll tables using key-value matrix queries to execute bulletproof ledger pushes.</p>
             <div class="blog-meta">By Corporate Tech Staff · April 2025</div>
@@ -1042,6 +999,7 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS SECTION -->
   <section id="testimonials">
     <div class="section-inner">
       <div class="section-header center fade-in">
@@ -1075,6 +1033,7 @@
     </div>
   </section>
 
+  <!-- CONTACT INQUIRY SECTION -->
   <section id="contact">
     <div class="section-inner">
       <div class="contact-grid">
@@ -1116,7 +1075,7 @@
             <iframe
               src="https://docs.google.com/forms/d/e/1FAIpQLSd7jb-agHmuuRquee2LtlvS03F1TvI1biaml4s4Igtc5FR_aA/viewform?embedded=true"
               width="100%"
-              height="800"
+              height="100%"
               title="Contact Supraflow Solutions Portal Form">
               Loading form configuration window...
             </iframe>
@@ -1126,6 +1085,7 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <div class="footer-top">
@@ -1171,331 +1131,134 @@
 </div>
 
 <script>
-  // Comprehensive Database containing complete content copies for sub-pages
+  // Content database housing data blocks
   const contentDatabase = {
     services: {
       crm: {
         title: "Enterprise Zoho CRM Architecture & Optimization Services",
         meta: "Consulting Category: Sales Pipeline Automation & Field Service Architecture",
-        body: `
-          <p>A successful CRM deployment requires structuring relational records to reflect your actual customer interactions. We design data entities within Zoho CRM to eliminate double-entry and prevent field inflation.</p>
-          <h2>Core Architectural Framework</h2>
-          <ul>
-            <li><strong>Dynamic Canvas & UI Customization:</strong> We clean up cluttered views by designing context-aware canvas interfaces. Sales reps see fields relevant to their current deal stage.</li>
-            <li><strong>Advanced Layout Rules & Validation:</strong> We block low-quality data entry at the baseline by configuring strict multi-field step validations using custom error criteria.</li>
-            <li><strong>Automated Blueprint Pipelining:</strong> We enforce uniform sales strategies by creating strict visual task progressions. Reps are systematically guided through checklist requirements, call transitions, and required verification documents before transitioning deals.</li>
-          </ul>
-          <h2>Deluge Webhook Integrations</h2>
-          <p>We configure custom post-transition script hooks to pass pipeline data parameters over to external billing networks, inventory managers, and customer tracking tools cleanly without relying on brittle third-party middleware connectors.</p>
-        `
+        body: `<p>A successful CRM deployment requires structuring relational records to reflect your actual customer interactions. We design data entities within Zoho CRM to eliminate double-entry and prevent field inflation.</p><h2>Core Architectural Framework</h2><ul><li><strong>Dynamic Canvas & UI Customization:</strong> We clean up cluttered views by designing context-aware canvas interfaces. Sales reps see fields relevant to their current deal stage.</li><li><strong>Advanced Layout Rules & Validation:</strong> We block low-quality data entry at the baseline by configuring strict multi-field step validations using custom error criteria.</li><li><strong>Automated Blueprint Pipelining:</strong> We enforce uniform sales strategies by creating strict visual task progressions. Reps are systematically guided through checklist requirements, call transitions, and required verification documents before transitioning deals.</li></ul><h2>Deluge Webhook Integrations</h2><p>We configure custom post-transition script hooks to pass pipeline data parameters over to external billing networks, inventory managers, and customer tracking tools cleanly without relying on brittle third-party middleware connectors.</p>`
       },
       books: {
         title: "Zoho Books Configuration & Financial Ledger Automations",
         meta: "Consulting Category: Corporate Accounting and Compliance Integration Engines",
-        body: `
-          <p>Manual data transcription errors within corporate accounting ledgers create costly tracking problems. Our solutions link your financial data modules directly to daily pipeline activity maps.</p>
-          <h2>System Engineering Focus Areas</h2>
-          <ul>
-            <li><strong>Custom Banking Rules & Direct Feeds:</strong> We build precise multi-criteria statement classification algorithms to reconcile massive volumes of operational transactions quickly.</li>
-            <li><strong>Cross-Module Automated Double Entries:</strong> When sales reps trigger final status tags inside client facing interfaces, matching invoices, contact accounts, and double-entry items are created inside Zoho Books automatically.</li>
-            <li><strong>Multi-Currency Tax Configurations:</strong> We configure multi-tax calculation models tailored for complex cross-border shipping models and local regional structures.</li>
-          </ul>
-          <h2>Secure Document Tracking</h2>
-          <p>We write automated reporting tasks that format audit trails, tracking links, and digital receipts into permanent cloud records for internal financial checkups.</p>
-        `
+        body: `<p>Manual data transcription errors within corporate accounting ledgers create costly tracking problems. Our solutions link your financial data modules directly to daily pipeline activity maps.</p><h2>System Engineering Focus Areas</h2><ul><li><strong>Custom Banking Rules & Direct Feeds:</strong> We build precise multi-criteria statement classification algorithms to reconcile massive volumes of operational transactions quickly.</li><li><strong>Cross-Module Automated Double Entries:</strong> When sales reps trigger final status tags inside client facing interfaces, matching invoices, contact accounts, and double-entry items are created inside Zoho Books automatically.</li><li><strong>Multi-Currency Tax Configurations:</strong> We configure multi-tax calculation models tailored for complex cross-border shipping models and local regional structures.</li></ul><h2>Secure Document Tracking</h2><p>We write automated reporting tasks that format audit trails, tracking links, and digital receipts into permanent cloud records for internal financial checkups.</p>`
       },
       creator: {
         title: "Bespoke Zoho Creator Low-Code Application Engineering",
         meta: "Consulting Category: High-Performance Database Design & Deluge Scripting",
-        body: `
-          <p>When off-the-shelf business systems cannot accommodate unique, proprietary operational logic, we build low-code database applications on the Zoho Creator platform.</p>
-          <h2>Advanced Structural Paradigms</h2>
-          <ul>
-            <li><strong>Normalized Data Relationships:</strong> We configure lookup structures to avoid performance bottlenecks, enabling rapid lookups across millions of relational row matrices.</li>
-            <li><strong>Custom HTML/CSS Web Widgets:</strong> We build modern interfaces using vanilla CSS styling conventions, completely decoupled from rigid standard frame models.</li>
-            <li><strong>Robust Access Right Roles:</strong> We configure record-level access logic rules so that portal users, external merchants, and operations supervisors see only information matching their designated security level.</li>
-          </ul>
-          <h2>Transactional Safety Protocols</h2>
-          <p>We write extensive programmatic safety validation handlers inside script blocks to block structural overlap conflicts, invalid duplicate counts, and incomplete data submission requests.</p>
-        `
+        body: `<p>When off-the-shelf business systems cannot accommodate unique, proprietary operational logic, we build low-code database applications on the Zoho Creator platform.</p><h2>Advanced Structural Paradigms</h2><ul><li><strong>Normalized Data Relationships:</strong> We configure lookup structures to avoid performance bottlenecks, enabling rapid lookups across millions of relational row matrices.</li><li><strong>Custom HTML/CSS Web Widgets:</strong> We build modern interfaces using vanilla CSS styling conventions, completely decoupled from rigid standard frame models.</li><li><strong>Robust Access Right Roles:</strong> We configure record-level access logic rules so that portal users, external merchants, and operations supervisors see only information matching their designated security level.</li></ul><h2>Transactional Safety Protocols</h2><p>We write extensive programmatic safety validation handlers inside script blocks to block structural overlap conflicts, invalid duplicate counts, and incomplete data submission requests.</p>`
       },
       hr: {
         title: "End-to-End Core HR & Customized Payroll Architectures",
         meta: "Consulting Category: Zoho People, Recruit, and Workforce Performance Mapping",
-        body: `
-          <p>Managing employee transitions requires smooth coordination across recruitment pipelines, shifts, and localized compliance ledgers.</p>
-          <h2>Core Integration Roadmap</h2>
-          <ul>
-            <li><strong>Zoho Recruit Pipeline Configuration:</strong> We automate applicant routing rules from recruitment pages into customized interview round tracking stages.</li>
-            <li><strong>Zoho People Workforce Rules:</strong> We configure precise geofencing parameters, attendance tracking criteria, and leaves logic matching shifts.</li>
-            <li><strong>Custom Payroll Translation Tables:</strong> For deployment sites located outside the coverage of Zoho’s native payroll platform, we build dynamic deduction tables to handle complex local taxes and compensation modules.</li>
-          </ul>
-          <h2>Performance Analytics</h2>
-          <p>We build automated appraisal dashboards tracking objective performance metrics over time, removing subjective blind spots from regular reviews.</p>
-        `
+        body: `<p>Managing employee transitions requires smooth coordination across recruitment pipelines, shifts, and localized compliance ledgers.</p><h2>Core Integration Roadmap</h2><ul><li><strong>Zoho Recruit Pipeline Configuration:</strong> We automate applicant routing rules from recruitment pages into customized interview round tracking stages.</li><li><strong>Zoho People Workforce Rules:</strong> We configure precise geofencing parameters, attendance tracking criteria, and leaves logic matching shifts.</li><li><strong>Custom Payroll Translation Tables:</strong> For deployment sites located outside the coverage of Zoho’s native payroll platform, we build dynamic deduction tables to handle complex local taxes and compensation modules.</li></ul><h2>Performance Analytics</h2><p>We build automated appraisal dashboards tracking objective performance metrics over time, removing subjective blind spots from regular reviews.</p>`
       },
       analytics: {
         title: "Advanced Data Blending & Zoho Analytics Dashboard Design",
         meta: "Consulting Category: Business Intelligence, Relational SQL Queries, and Data Science",
-        body: `
-          <p>True operational clarity requires looking past isolated metrics. We blend information silos into high-performance analytical environments.</p>
-          <h2>Technical Analytics Capabilities</h2>
-          <ul>
-            <li><strong>Cross-Module Data Fabric Integration:</strong> We write optimized SQL queries to combine data from separate platforms like CRM, support databases, and inventory logs into single analytical models.</li>
-            <li><strong>Predictive Forecast Ingestion:</strong> We integrate statistical forecasting algorithms over active historical rows to project resource bottlenecks and pipeline shifts.</li>
-            <li><strong>Performance KPI Reporting Matrix:</strong> We build clean executive tracking portals that highlight real-time variance levels, cost points, and sales cycle duration speeds.</li>
-          </ul>
-          <h2>Automated Alert Delivery</h2>
-          <p>We set up custom notification triggers that flag team leaders via direct messaging applications when metrics shift outside chosen baseline levels.</p>
-        `
+        body: `<p>True operational clarity requires looking past isolated metrics. We blend information silos into high-performance analytical environments.</p><h2>Technical Analytics Capabilities</h2><ul><li><strong>Cross-Module Data Fabric Integration:</strong> We write optimized SQL queries to combine data from separate platforms like CRM, support databases, and inventory logs into single analytical models.</li><li><strong>Predictive Forecast Ingestion:</strong> We integrate statistical forecasting algorithms over active historical rows to project resource bottlenecks and pipeline shifts.</li><li><strong>Performance KPI Reporting Matrix:</strong> We build clean executive tracking portals that highlight real-time variance levels, cost points, and sales cycle duration speeds.</li></ul><h2>Automated Alert Delivery</h2><p>We set up custom notification triggers that flag team leaders via direct messaging applications when metrics shift outside chosen baseline levels.</p>`
       },
       desk: {
         title: "Enterprise Zoho Desk Deployment & Advanced Workflows",
         meta: "Consulting Category: Omni-Channel Ticket Management & SLA Routing Logic",
-        body: `
-          <p>Customer help centers must process issues quickly while keeping information organized. We build structured tracking portals inside Zoho Desk.</p>
-          <h2>System Engineering Deliverables</h2>
-          <ul>
-            <li><strong>Multi-Channel Input Pipelining:</strong> We combine support input channels—such as email networks, phone extensions, and website forms—into a unified sorting dashboard.</li>
-            <li><strong>SLA Target Escalation Triggers:</strong> We script automated deadline alerts that update case priorities and alert senior management when milestones are missed.</li>
-            <li><strong>Branded Help Center Portals:</strong> We build secure customer portals using clean HTML/CSS elements, allowing users to track their tickets independently.</li>
-          </ul>
-          <h2>Knowledge Base Optimization</h2>
-          <p>We organize documentation structures to surface solution articles automatically during customer entry, resolving common questions before they become tickets.</p>
-        `
+        body: `<p>Customer help centers must process issues quickly while keeping information organized. We build structured tracking portals inside Zoho Desk.</p><h2>System Engineering Deliverables</h2><ul><li><strong>Multi-Channel Input Pipelining:</strong> We combine support input channels—such as email networks, phone extensions, and website forms—into a unified sorting dashboard.</li><li><strong>SLA Target Escalation Triggers:</strong> We script automated deadline alerts that update case priorities and alert senior management when milestones are missed.</li><li><strong>Branded Help Center Portals:</strong> We build secure customer portals using clean HTML/CSS elements, allowing users to track their tickets independently.</li></ul><h2>Knowledge Base Optimization</h2><p>We organize documentation structures to surface solution articles automatically during customer entry, resolving common questions before they become tickets.</p>`
       }
     },
     solutions: {
       payroll: {
         title: "Custom Localized Payroll Engine Built on Zoho Creator",
         meta: "Case Study: Financial Compliance & Cross-App Integration Platforms",
-        body: `
-          <p><strong>Client Requirement:</strong> A multinational enterprise located in regions without native Zoho Payroll localization needed a unified compliance tool to process variable compensation directly inside their Zoho ecosystem.</p>
-          <h2>The Engineered Architecture</h2>
-          <p>We built a secure payroll calculator app on Zoho Creator that interfaces with internal HR records through API data hooks.</p>
-          <h2>Key Platform Elements</h2>
-          <ul>
-            <li><strong>Dynamic Map Structuring:</strong> We engineered Deluge data tables that read complex regional tax formulas, variable allowances, and deductions on the fly.</li>
-            <li><strong>Attendance Sync Ingestion:</strong> The engine automatically aggregates approved overtime hours and unpaid leaves from Zoho People records.</li>
-            <li><strong>Books API Ledger Automation:</strong> Upon payroll sign-off, a custom script loop builds and validates double-entry ledger items inside Zoho Books automatically.</li>
-          </ul>
-          <h2>Measurable Project Outcomes</h2>
-          <p>The client replaced slow spreadsheet hand-offs with a single-click verification pipeline, reducing calculation errors down to zero while generating full audit trails for compliance checks.</p>
-        `
+        body: `<p><strong>Client Requirement:</strong> A multinational enterprise located in regions without native Zoho Payroll localization needed a unified compliance tool to process variable compensation directly inside their Zoho ecosystem.</p><h2>The Engineered Architecture</h2><p>We built a secure payroll calculator app on Zoho Creator that interfaces with internal HR records through API data hooks.</p><h2>Key Platform Elements</h2><ul><li><strong>Dynamic Map Structuring:</strong> We engineered Deluge data tables that read complex regional tax formulas, variable allowances, and deductions on the fly.</li><li><strong>Attendance Sync Ingestion:</strong> The engine automatically aggregates approved overtime hours and unpaid leaves from Zoho People records.</li><li><strong>Books API Ledger Automation:</strong> Upon payroll sign-off, a custom script loop builds and validates double-entry ledger items inside Zoho Books automatically.</li></ul><h2>Measurable Project Outcomes</h2><p>The client replaced slow spreadsheet hand-offs with a single-click verification pipeline, reducing calculation errors down to zero while generating full audit trails for compliance checks.</p>`
       },
       manufacturing: {
         title: "End-to-End Production Lifecycle App for Manufacturing",
         meta: "Case Study: Complex Multi-Tier Material Operations Control Platforms",
-        body: `
-          <p><strong>Client Requirement:</strong> A regional manufacturing company needed to replace siloed tracking tools with a unified asset management platform capable of mapping complex Bills of Materials (BOM).</p>
-          <h2>The Engineered Architecture</h2>
-          <p>We designed a customized operations manager in Zoho Creator that connects raw material logs directly with active sales demands.</p>
-          <h2>Key Platform Elements</h2>
-          <ul>
-            <li><strong>Recursive Multi-Level BOM Parsing:</strong> We built data schemas that unfold sub-assembly component structures without causing lookup loops.</li>
-            <li><strong>Workcenter Allocations Engine:</strong> Automated rules parse current workloads to route jobs across production machinery based on capacity.</li>
-            <li><strong>By-Product Re-routing Logic:</strong> Material outcomes and waste metrics are categorized and logged back into inventory sheets dynamically.</li>
-          </ul>
-          <h2>Measurable Project Outcomes</h2>
-          <p>The company gained real-time production visibility, cutting stock-out delays and stabilizing assembly material planning accuracy across all manufacturing facilities.</p>
-        `
+        body: `<p><strong>Client Requirement:</strong> A regional manufacturing company needed to replace siloed tracking tools with a unified asset management platform capable of mapping complex Bills of Materials (BOM).</p><h2>The Engineered Architecture</h2><p>We designed a customized operations manager in Zoho Creator that connects raw material logs directly with active sales demands.</p><h2>Key Platform Elements</h2><ul><li><strong>Recursive Multi-Level BOM Parsing:</strong> We built data schemas that unfold sub-assembly component structures without causing lookup loops.</li><li><strong>Workcenter Allocations Engine:</strong> Automated rules parse current workloads to route jobs across production machinery based on capacity.</li><li><strong>By-Product Re-routing Logic:</strong> Material outcomes and waste metrics are categorized and logged back into inventory sheets dynamically.</li></ul><h2>Measurable Project Outcomes</h2><p>The company gained real-time production visibility, cutting stock-out delays and stabilizing assembly material planning accuracy across all manufacturing facilities.</p>`
       },
       procurement: {
         title: "AI-Powered E-Procurement Engine & Vector Vendor Matching",
         meta: "Case Study: Advanced Fraud Analytics & Content Recommendation Tools",
-        body: `
-          <p><strong>Client Requirement:</strong> A supply chain enterprise required an automated verification layer to handle massive vendor quotation packages and detect collusive bidding structures.</p>
-          <h2>The Engineered Architecture</h2>
-          <p>We layered mathematical analysis scripts over a Zoho Creator data repository, creating an automated verification pipeline for supplier responses.</p>
-          <h2>Key Platform Elements</h2>
-          <ul>
-            <li><strong>Vendor Profile Embeddings:</strong> Business requirements are converted into vector representations to screen prospective partners via cosine-similarity scores.</li>
-            <li><strong>Pricing Anomaly Scanners:</strong> The system automatically flags price quotes that deviate from historical baselines or market rates.</li>
-            <li><strong>Bidding Group Identification:</strong> Pattern matching scripts analyze identical bid structures to uncover hidden supplier networks.</li>
-          </ul>
-          <h2>Measurable Project Outcomes</h2>
-          <p>The automated procurement checks reduced review cycles from weeks to minutes, while protecting corporate buyers from non-compliant supplier pricing structures.</p>
-        `
+        body: `<p><strong>Client Requirement:</strong> A supply chain enterprise required an automated verification layer to handle massive vendor quotation packages and detect collusive bidding structures.</p><h2>The Engineered Architecture</h2><p>We layered mathematical analysis scripts over a Zoho Creator data repository, creating an automated verification pipeline for supplier responses.</p><h2>Key Platform Elements</h2><ul><li><strong>Vendor Profile Embeddings:</strong> Business requirements are converted into vector representations to screen prospective partners via cosine-similarity scores.</li><li><strong>Pricing Anomaly Scanners:</strong> The system automatically flags price quotes that deviate from historical baselines or market rates.</li><li><strong>Bidding Group Identification:</strong> Pattern matching scripts analyze identical bid structures to uncover hidden supplier networks.</li></ul><h2>Measurable Project Outcomes</h2><p>The automated procurement checks reduced review cycles from weeks to minutes, while protecting corporate buyers from non-compliant supplier pricing structures.</p>`
       },
       deskai: {
         title: "Vector Semantic Clustering Implementations inside Zoho Desk",
         meta: "Case Study: Enterprise Natural Language Ticket Classification Pipelines",
-        body: `
-          <p><strong>Client Requirement:</strong> A global SaaS provider needed to cut down support queues and link client issues to internal engineering bug databases automatically.</p>
-          <h2>The Engineered Architecture</h2>
-          <p>We built an automated text-processing pipeline that transforms inbound Zoho Desk queries into semantic vector data coordinates.</p>
-          <h2>Key Platform Elements</h2>
-          <ul>
-            <li><strong>Semantic Similarity Evaluation:</strong> Inbound queries are systematically compared against a historical data index to group related customer issues.</li>
-            <li><strong>Automatic Ticket Grouping:</strong> Identified patterns link incoming requests to master problem records, keeping the desk organized.</li>
-            <li><strong>Contextual Solutions Search:</strong> The support platform surfaces tailored documentation snippets for help desk agents, reducing resolution times.</li>
-          </ul>
-          <h2>Measurable Project Outcomes</h2>
-          <p>The support team cut response times for duplicate technical tickets, reduced backlog queues, and improved customer satisfaction scores.</p>
-        `
+        body: `<p><strong>Client Requirement:</strong> A global SaaS provider needed to cut down support queues and link client issues to internal engineering bug databases automatically.</p><h2>The Engineered Architecture</h2><p>We built an automated text-processing pipeline that transforms inbound Zoho Desk queries into semantic vector data coordinates.</p><h2>Key Platform Elements</h2><ul><li><strong>Semantic Similarity Evaluation:</strong> Inbound queries are systematically compared against a historical data index to group related customer issues.</li><li><strong>Automatic Ticket Grouping:</strong> Identified patterns link incoming requests to master problem records, keeping the desk organized.</li><li><strong>Contextual Solutions Search:</strong> The support platform surfaces tailored documentation snippets for help desk agents, reducing resolution times.</li></ul><h2>Measurable Project Outcomes</h2><p>The support team cut response times for duplicate technical tickets, reduced backlog queues, and improved customer satisfaction scores.</p>`
       },
       voiceagent: {
         title: "Autonomic Outbound AI Voice Lead Qualification Deployment",
         meta: "Case Study: Low-Latency ElevenLabs Voice & Zoho CRM Integrations",
-        body: `
-          <p><strong>Client Requirement:</strong> A consumer services firm required a responsive qualification system to contact inbound marketing leads within seconds of submission, operating 24/7.</p>
-          <h2>The Engineered Architecture</h2>
-          <p>We connected Zoho CRM event triggers directly to a low-latency outbound audio streaming engine via secure webhooks.</p>
-          <h2>Key Platform Elements</h2>
-          <ul>
-            <li><strong>Instant Webhook Integration:</strong> Inbound web registrations trigger immediate, personalized outbound calls via voice synthesis APIs.</li>
-            <li><strong>Conversational Intent Mapping:</strong> The system processes natural customer conversations to gather qualification data points cleanly.</li>
-            <li><strong>Automated CRM Categorization:</strong> Call records and text transcripts are parsed into lead status entries (Hot, Warm, Cold) inside Zoho CRM records.</li>
-          </ul>
-          <h2>Measurable Project Outcomes</h2>
-          <p>The client achieved near-instant response times for new leads, maximizing contact rates and passing verified prospects to sales teams immediately.</p>
-        `
+        body: `<p><strong>Client Requirement:</strong> A consumer services firm required a responsive qualification system to contact inbound marketing leads within seconds of submission, operating 24/7.</p><h2>The Engineered Architecture</h2><p>We connected Zoho CRM event triggers directly to a low-latency outbound audio streaming engine via secure webhooks.</p><h2>Key Platform Elements</h2><ul><li><strong>Instant Webhook Integration:</strong> Inbound web registrations trigger immediate, personalized outbound calls via voice synthesis APIs.</li><li><strong>Conversational Intent Mapping:</strong> The system processes natural customer conversations to gather qualification data points cleanly.</li><li><strong>Automated CRM Categorization:</strong> Call records and text transcripts are parsed into lead status entries (Hot, Warm, Cold) inside Zoho CRM records.</li></ul><h2>Measurable Project Outcomes</h2><p>The client achieved near-instant response times for new leads, maximizing contact rates and passing verified prospects to sales teams immediately.</p>`
       }
     },
     industries: {
       manufacturing: {
         title: "Zoho Implementations Built for Manufacturing Enterprises",
         meta: "Industry Solutions: Production Lifecycle Optimization & Material Controls",
-        body: `
-          <p>Modern production facilities need to sync dynamic floor plans with administrative databases. Our configurations replace isolated trackers with unified data platforms.</p>
-          <h2>Target Solution Highlights</h2>
-          <ul>
-            <li><strong>Live Production Scheduling:</strong> We build clear dashboard calendars mapping machinery timelines and tracking active operator usage metrics.</li>
-            <li><strong>Automated Material Transfers:</strong> Raw component tracking records trigger purchase requests inside Zoho Inventory as materials move through the assembly floor.</li>
-            <li><strong>Uptime Maintenance Schedules:</strong> Equipment metrics initiate automated maintenance tickets to minimize assembly breakdowns.</li>
-          </ul>
-        `
+        body: `<p>Modern production facilities need to sync dynamic floor plans with administrative databases. Our configurations replace isolated trackers with unified data platforms.</p><h2>Target Solution Highlights</h2><ul><li><strong>Live Production Scheduling:</strong> We build clear dashboard calendars mapping machinery timelines and tracking active operator usage metrics.</li><li><strong>Automated Material Transfers:</strong> Raw component tracking records trigger purchase requests inside Zoho Inventory as materials move through the assembly floor.</li><li><strong>Uptime Maintenance Schedules:</strong> Equipment metrics initiate automated maintenance tickets to minimize assembly breakdowns.</li></ul>`
       },
       realestate: {
         title: "Zoho Systems Configured for High-Scale Real Estate Developers",
         meta: "Industry Solutions: Lead Classification, Property Matrices, and Client Portals",
-        body: `
-          <p>Real estate operations move quickly across client onboarding, property inventory management, and agent commission payouts.</p>
-          <h2>Target Solution Highlights</h2>
-          <ul>
-            <li><strong>Live Asset Registries:</strong> We design customized structures mapping property sizes, availability statuses, and price options within clear user interfaces.</li>
-            <li><strong>Agent Commission Engines:</strong> Automated workflows calculate variable commission distributions across agent pools upon contract sign-off.</li>
-            <li><strong>Secure Document Portals:</strong> Buyers can safely access payment records, purchase agreements, and milestones through web portals.</li>
-          </ul>
-        `
+        body: `<p>Real estate operations move quickly across client onboarding, property inventory management, and agent commission payouts.</p><h2>Target Solution Highlights</h2><ul><li><strong>Live Asset Registries:</strong> We design customized structures mapping property sizes, availability statuses, and price options within clear user interfaces.</li><li><strong>Agent Commission Engines:</strong> Automated workflows calculate variable commission distributions across agent pools upon contract sign-off.</li><li><strong>Secure Document Portals:</strong> Buyers can safely access payment records, purchase agreements, and milestones through web portals.</li></ul>`
       },
       retail: {
         title: "Omni-Channel Retail & E-Commerce Integration Frameworks",
         meta: "Industry Solutions: Multi-Warehouse Inventories & Point of Sale Syncs",
-        body: `
-          <p>Omni-channel sales require unified management across web platforms, brick-and-mortar storefronts, and logistics warehouses.</p>
-          <h2>Target Solution Highlights</h2>
-          <ul>
-            <li><strong>Unified Multi-Store Stocks:</strong> Inventory numbers sync across digital marketplaces and retail locations to prevent double-booking issues.</li>
-            <li><strong>Automated Order Routing:</strong> Inbound orders route to the closest warehouse facility based on fulfillment metrics.</li>
-            <li><strong>Customer Loyalty Automation:</strong> Historical purchase data links directly to tailored marketing campaigns managed within CRM tools.</li>
-          </ul>
-        `
+        body: `<p>Omni-channel sales require unified management across web platforms, brick-and-mortar storefronts, and logistics warehouses.</p><h2>Target Solution Highlights</h2><ul><li><strong>Unified Multi-Store Stocks:</strong> Inventory numbers sync across digital marketplaces and retail locations to prevent double-booking issues.</li><li><strong>Automated Order Routing:</strong> Inbound orders route to the closest warehouse facility based on fulfillment metrics.</li><li><strong>Customer Loyalty Automation:</strong> Historical purchase data links directly to tailored marketing campaigns managed within CRM tools.</li></ul>`
       },
       it: {
         title: "Zoho Frameworks Optimized for IT Consulting & SaaS Scale-Ups",
         meta: "Industry Solutions: Subscription Bookkeeping & Tech Project Deployments",
-        body: `
-          <p>Technology providers prioritize clear visibility into recurring subscription models, active service deliverables, and engineering milestones.</p>
-          <h2>Target Solution Highlights</h2>
-          <ul>
-            <li><strong>Subscription Billing Automations:</strong> Invoicing, renewals, and upgrade changes route directly into tracking accounts.</li>
-            <li><strong>Project Milestone Integrations:</strong> Active developer ticket statuses mirror client visibility settings for reliable technical updates.</li>
-            <li><strong>Resource Allocation Insights:</strong> Dashboards analyze tracking records to balance operational costs against technical timelines.</li>
-          </ul>
-        `
+        body: `<p>Technology providers prioritize clear visibility into recurring subscription models, active service deliverables, and engineering milestones.</p><h2>Target Solution Highlights</h2><ul><li><strong>Subscription Billing Automations:</strong> Invoicing, renewals, and upgrade changes route directly into tracking accounts.</li><li><strong>Project Milestone Integrations:</strong> Active developer ticket statuses mirror client visibility settings for reliable technical updates.</li><li><strong>Resource Allocation Insights:</strong> Dashboards analyze tracking records to balance operational costs against technical timelines.</li></ul>`
       }
     },
     blogs: {
       manufacturing: {
         title: "Architecting Multi-Tier Manufacturing Apps on Zoho Creator",
         meta: "Published: June 2025 | Author: Saurabh Singh, Systems Architect",
-        body: `
-          <p>Building an enterprise-ready manufacturing application inside low-code environments requires careful attention to database design. Standard linear structures can fail when processing thousands of complex material assemblies.</p>
-          <h2>The Danger of Circular Database Relationships</h2>
-          <p>A common error during development is configuring circular lookups. If Item A references Sub-assembly B, and Sub-assembly B references Component A, lookup operations can trigger severe system performance bottlenecks.</p>
-          <h2>Engineered Data Architecture Best Practices</h2>
-          <p>We recommend separating basic material catalogs from active production logs. Use distinct tables for structural configurations, processing stages, and active machine tracking to keep data clean and query speeds fast.</p>
-          <h2>Optimizing Performance for Multi-Tier Lookups</h2>
-          <p>When lookups must span several organizational layers, use lookup filters and structured maps to process queries in single steps, keeping application speeds fast for end users.</p>
-        `
+        body: `<p>Building an enterprise-ready manufacturing application inside low-code environments requires careful attention to database design. Standard linear structures can fail when processing thousands of complex material assemblies.</p><h2>The Danger of Circular Database Relationships</h2><p>A common error during development is configuring circular lookups. If Item A references Sub-assembly B, and Sub-assembly B references Component A, lookup operations can trigger severe system performance bottlenecks.</p><h2>Engineered Data Architecture Best Practices</h2><p>We recommend separating basic material catalogs from active production logs. Use distinct tables for structural configurations, processing stages, and active machine tracking to keep data clean and query speeds fast.</p><h2>Optimizing Performance for Multi-Tier Lookups</h2><p>When lookups must span several organizational layers, use lookup filters and structured maps to process queries in single steps, keeping application speeds fast for end users.</p>`
       },
       desk: {
         title: "Implementing Vector Similarity Searches Inside Zoho Desk",
         meta: "Published: May 2025 | Author: Supraflow Engineering Team",
-        body: `
-          <p>Standard text searches in customer help portals often miss context. If a user writes about a login failure and an internal article uses different terminology, the system fails to match them. Vector embedding engines resolve this by analyzing text semantically.</p>
-          <h2>Building the Text Transformation Pipeline</h2>
-          <p>We set up webhooks that securely capture incoming text fields from Zoho Desk, converting the phrases into mathematical vector coordinates via secure analytics APIs.</p>
-          <h2>Running High-Speed Similarity Queries</h2>
-          <p>The generated coordinates are screened against an indexed database of historical solutions using mathematical similarity checks to return matching answers instantly.</p>
-          <h2>Empowering Technical Support Agents</h2>
-          <p>The support system surfaces contextually relevant resolutions for support staff directly within the ticket view, speeding up response times across the team.</p>
-        `
+        body: `<p>Standard text searches in customer help portals often miss context. If a user writes about a login failure and an internal article uses different terminology, the system fails to match them. Vector embedding engines resolve this by analyzing text semantically.</p><h2>Building the Text Transformation Pipeline</h2><p>We set up webhooks that securely capture incoming text fields from Zoho Desk, converting the phrases into mathematical vector coordinates via secure analytics APIs.</p><h2>Running High-Speed Similarity Queries</h2><p>The generated coordinates are screened against an indexed database of historical solutions using mathematical similarity checks to return matching answers instantly.</p><h2>Empowering Technical Support Agents</h2><p>The support system surfaces contextually relevant resolutions for support staff directly within the ticket view, speeding up response times across the team.</p>`
       },
       payroll: {
         title: "Building Compliant Dynamic Salary Engines Using Deluge Map Scripting",
         meta: "Published: April 2025 | Author: Corporate Tech Staff",
-        body: `
-          <p>Processing custom enterprise payroll across varying regional tax rules requires dynamic scripting logic. Hardcoded calculations fail when local regulations or deduction tiers change.</p>
-          <h2>Using Deluge Key-Value Maps</h2>
-          <p>We organize dynamic elements using key-value maps. Storing regional tax brackets and calculation rules as separate records keeps processing logic flexible and adaptable.</p>
-          <h2>Ensuring Reliable Transaction Processing</h2>
-          <p>We build systematic validation checks into calculation steps. The script recalculates all totals prior to submission, flagging exceptions if records don't balance perfectly.</p>
-          <h2>Automated Financial Ledger Entries</h2>
-          <p>Once calculation validations clear, an automated script loop safely maps final pay runs into corporate accounting tools via verified secure connection tokens.</p>
-        `
+        body: `<p>Processing custom enterprise payroll across varying regional tax rules requires dynamic scripting logic. Hardcoded calculations fail when local regulations or deduction tiers change.</p><h2>Using Deluge Key-Value Maps</h2><p>We organize dynamic elements using key-value maps. Storing regional tax brackets and calculation rules as separate records keeps processing logic flexible and adaptable.</p><h2>Ensuring Reliable Transaction Processing</h2><p>We build systematic validation checks into calculation steps. The script recalculates all totals prior to submission, flagging exceptions if records don't balance perfectly.</p><h2>Automated Financial Ledger Entries</h2><p>Once calculation validations clear, an automated script loop safely maps final pay runs into corporate accounting tools via verified secure connection tokens.</p>`
       }
     },
     training: {
       crm: {
         title: "Advanced Zoho CRM Architectural Certification Blueprint",
         meta: "Technical Course: Developer Path & Sandbox Administration Policies",
-        body: `
-          <p>This technical curriculum focuses on developing performant enterprise instances, building layout rules, and configuring multi-stage blueprint paths cleanly.</p>
-          <h2>Key Technical Learning Pillars</h2>
-          <ul>
-            <li><strong>Advanced Relational Architecture:</strong> Building optimal lookup paths across multiple core modules without performance lag.</li>
-            <li><strong>Sanitized Validation Logic:</strong> Deploying validation criteria using clean expressions to catch data errors early.</li>
-            <li><strong>REST Endpoint Webhook Hooks:</strong> Writing secure post-save handlers to trigger actions across secondary applications.</li>
-          </ul>
-        `
+        body: `<p>This technical curriculum focuses on developing performant enterprise instances, building layout rules, and configuring multi-stage blueprint paths cleanly.</p><h2>Key Technical Learning Pillars</h2><ul><li><strong>Advanced Relational Architecture:</strong> Building optimal lookup paths across multiple core modules without performance lag.</li><li><strong>Sanitized Validation Logic:</strong> Deploying validation criteria using clean expressions to catch data errors early.</li><li><strong>REST Endpoint Webhook Hooks:</strong> Writing secure post-save handlers to trigger actions across secondary applications.</li></ul>`
       },
       creator: {
         title: "Mastering Deluge Scripting & Custom Zoho Creator Engineering",
         meta: "Technical Course: Low-Code Development & Custom Widget Architecture",
-        body: `
-          <p>An exhaustive course tailored for engineers designing high-volume database systems, custom widgets, and complex logic routines on the Zoho Creator platform.</p>
-          <h2>Key Technical Learning Pillars</h2>
-          <ul>
-            <li><strong>Performant Query Construction:</strong> Writing clean record search statements to avoid lookup timeouts.</li>
-            <li><strong>Vanishing CSS Portals:</strong> Building clear custom HTML widgets that match modern UI styling choices.</li>
-            <li><strong>Cross-Platform Third-Party APIs:</strong> Constructing clean JSON payloads and token authentication flows to connect systems securely.</li>
-          </ul>
-        `
+        body: `<p>An exhaustive course tailored for engineers designing high-volume database systems, custom widgets, and complex logic routines on the Zoho Creator platform.</p><h2>Key Technical Learning Pillars</h2><ul><li><strong>Performant Query Construction:</strong> Writing clean record search statements to avoid lookup timeouts.</li><li><strong>Vanishing CSS Portals:</strong> Building clear custom HTML widgets that match modern UI styling choices.</li><li><strong>Cross-Platform Third-Party APIs:</strong> Constructing clean JSON payloads and token authentication flows to connect systems securely.</li></ul>`
       },
       books: {
         title: "Zoho Books Advanced Financial Automation & Integration Course",
         meta: "Technical Course: Corporate Bookkeeping Systems & Ledger Extensions",
-        body: `
-          <p>Learn to automate corporate finance operations, design custom invoices, and script direct double-entry updates across applications safely.</p>
-          <h2>Key Technical Learning Pillars</h2>
-          <ul>
-            <li><strong>Dynamic Transaction Templates:</strong> Building context-aware invoice formatting tools using clean variables.</li>
-            <li><strong>Automated Reconciliation Engines:</strong> Designing multi-criteria filtering rules to categorize bank statements efficiently.</li>
-            <li><strong>API Financial Handlers:</strong> Writing error-resistant scripting modules to manage balance sheet entries programmatically.</li>
-          </ul>
-        `
+        body: `<p>Learn to automate corporate finance operations, design custom invoices, and script direct double-entry updates across applications safely.</p><h2>Key Technical Learning Pillars</h2><ul><li><strong>Dynamic Transaction Templates:</strong> Building context-aware invoice formatting tools using clean variables.</li><li><strong>Automated Reconciliation Engines:</strong> Designing multi-criteria filtering rules to categorize bank statements efficiently.</li><li><strong>API Financial Handlers:</strong> Writing error-resistant scripting modules to manage balance sheet entries programmatically.</li></ul>`
       }
     }
   };
 
-  // Mobile menu toggle handler
+  // Mobile navigation drawer toggles
   function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('hamburgerMenu');
+    menu.classList.toggle('open');
+    burger.classList.toggle('open');
   }
 
-  // Showcase individual solution panel tabs inside homepage UI view block
+  // Solution tabs selection switches
   function showSolution(idx) {
     document.querySelectorAll('.solution-panel').forEach((p, i) => {
       p.classList.toggle('active', i === idx);
@@ -1505,38 +1268,30 @@
     });
   }
 
-  // SPA ROUTING ENGINE: Intercepts clicks and injects data safely inside viewing panel window
+  // SPA Routing Engine showing hidden panels smoothly
   function navigateToContent(sectionKey, itemKey) {
     const section = contentDatabase[sectionKey];
-    if (!section || !section[itemKey]) {
-      console.error(`Data hook not found for query path elements: ${sectionKey} -> ${itemKey}`);
-      return;
-    }
+    if (!section || !section[itemKey]) return;
 
     const data = section[itemKey];
-
-    // Populating DOM elements with complete content records safely
     document.getElementById('subpageTitle').innerHTML = data.title;
     document.getElementById('subpageMeta').innerHTML = data.meta;
     document.getElementById('subpageBody').innerHTML = data.body;
 
-    // Hiding Homepage and smoothly sliding up content panel view to user focus
     document.getElementById('mainPageContentContainer').style.display = 'none';
     const panel = document.getElementById('subpageViewContainer');
     panel.classList.add('active');
     
-    // Reset reading scroll coordinates to absolute top page edge instantly
     window.scrollTo(0, 0);
     panel.scrollTop = 0;
   }
 
-  // Restores standard primary homepage interface state
   function closePagePanel() {
     document.getElementById('subpageViewContainer').classList.remove('active');
     document.getElementById('mainPageContentContainer').style.display = 'block';
   }
 
-  // Intersection Observer implementation for scroll reveal animations
+  // Fade-in Intersection Observer
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) e.target.classList.add('visible');
@@ -1545,11 +1300,11 @@
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  // Dynamic Home Page active link illumination matching scroll locations
-  const sections = document.querySelectorAll('section[id]');
+  // Dynamic nav link scroll listener
+  const mainSections = document.querySelectorAll('section[id]');
   window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(s => {
+    mainSections.forEach(s => {
       if (window.scrollY >= s.offsetTop - 120) current = s.id;
     });
     document.querySelectorAll('.nav-links a').forEach(a => {
