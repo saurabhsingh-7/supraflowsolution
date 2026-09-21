@@ -970,7 +970,7 @@
             <div class="blog-tag">Change Management</div>
             <h3>Architecting Multi-Tier Manufacturing Apps on Zoho Creator</h3>
             <p>An in-depth guide detailing normalized table structures, cyclical lookup protection, and transactional performance rules within low-code systems.</p>
-            <div class="blog-meta">By Saurabh Singh · June 2025</div>
+
           </div>
         </div>
         <div class="blog-card" onclick="navigateToContent('blogs', 'desk')">
@@ -1059,7 +1059,7 @@
             <div class="contact-detail-icon">📧</div>
             <div>
               <h4>Technical Inquiry Desk</h4>
-              <p><a href="mailto:saurabh@supraflowsolutions.com" style="color:inherit;text-decoration:none;">saurabh@supraflowsolutions.com</a></p>
+              <p><a href="mailto:hello@supraflowsolutions.com" style="color:inherit;text-decoration:none;">hello@supraflowsolutions.com</a></p>
             </div>
           </div>
           <div class="contact-detail">
@@ -1217,7 +1217,6 @@
     blogs: {
       manufacturing: {
         title: "Architecting Multi-Tier Manufacturing Apps on Zoho Creator",
-        meta: "Published: June 2025 | Author: Saurabh Singh, Systems Architect",
         body: `<p>Building an enterprise-ready manufacturing application inside low-code environments requires careful attention to database design. Standard linear structures can fail when processing thousands of complex material assemblies.</p><h2>The Danger of Circular Database Relationships</h2><p>A common error during development is configuring circular lookups. If Item A references Sub-assembly B, and Sub-assembly B references Component A, lookup operations can trigger severe system performance bottlenecks.</p><h2>Engineered Data Architecture Best Practices</h2><p>We recommend separating basic material catalogs from active production logs. Use distinct tables for structural configurations, processing stages, and active machine tracking to keep data clean and query speeds fast.</p><h2>Optimizing Performance for Multi-Tier Lookups</h2><p>When lookups must span several organizational layers, use lookup filters and structured maps to process queries in single steps, keeping application speeds fast for end users.</p>`
       },
       desk: {
