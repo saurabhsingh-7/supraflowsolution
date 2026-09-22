@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Block nothing — this is a marketing site and every page should be crawlable.
+# Add Disallow rules here only for admin/staging paths you create later.
+
+# Common bad-bot / scraper throttling (optional — uncomment if bandwidth matters)
+# User-agent: AhrefsBot
+# Crawl-delay: 10
+# User-agent: SemrushBot
+# Crawl-delay: 10
+
+Sitemap: https://www.supraflowsolutions.com/sitemap.xml
