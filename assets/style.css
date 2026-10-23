@@ -580,7 +580,7 @@ a{color:var(--purple-bright);text-decoration-thickness:1px;text-underline-offset
 
 /* ═══════════════ BACK TO TOP ═══════════════ */
 #to-top{
-  position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;
+  position:fixed;right:22px;bottom:92px;width:46px;height:46px;border-radius:50%;
   background:var(--purple-bright);color:#fff;border:0;cursor:pointer;z-index:90;
   display:grid;place-items:center;box-shadow:var(--sh-lg);
   opacity:0;visibility:hidden;transform:translateY(12px);
@@ -729,4 +729,7 @@ main.page{padding:calc(var(--nav-h) + var(--s7)) 5% var(--s9);background:#fff;mi
 @media (max-width:640px){
   .wa-wrap{right:14px; bottom:14px;}
   .wa-bubble{max-width:220px; font-size:13px;}
+}
+@media (max-width:640px){
+  #to-top{right:16px; bottom:78px; width:42px; height:42px;}
 }
