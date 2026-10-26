@@ -28,7 +28,7 @@ if('IntersectionObserver' in window){
 /* WhatsApp floating button with auto-greeting popup — injected site-wide */
 (function(){
   var waNumber='916306115296';
-  var waMsg=encodeURIComponent("Hi Supraflow Solutions, I'd like to talk about a Zoho project.");
+  var waMsg=encodeURIComponent("Hi Supraflow Solutions, I'd like to talk about a project.");
   var waHref='https://wa.me/'+waNumber+'?text='+waMsg;
 
   var wrap=document.createElement('div');
@@ -37,7 +37,7 @@ if('IntersectionObserver' in window){
   var bubble=document.createElement('div');
   bubble.className='wa-bubble';
   bubble.innerHTML='<button class="wa-bubble-close" aria-label="Dismiss">&times;</button>'+
-    '<strong>Hey there! \uD83D\uDC4B</strong><span>Got a Zoho question? Chat with us directly on WhatsApp.</span>';
+    '<strong>Hey there! \uD83D\uDC4B</strong><span>Got a project in mind? Chat with us directly on WhatsApp.</span>';
   bubble.addEventListener('click',function(e){
     if(e.target.classList.contains('wa-bubble-close')){
       bubble.classList.remove('show');
