@@ -368,6 +368,9 @@ a{color:var(--purple-bright);text-decoration-thickness:1px;text-underline-offset
 .ticks{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:var(--s5)}
 .ticks li{display:flex;gap:11px;align-items:flex-start;font-size:14.2px;color:var(--gray-600)}
 .ticks li::before{content:"✓";color:var(--ok);font-weight:800;flex-shrink:0;line-height:1.5}
+.healthcheck{list-style:none;display:flex;flex-direction:column;gap:12px;margin:var(--s4) 0 var(--s5)}
+.healthcheck li label{display:flex;gap:11px;align-items:flex-start;font-size:14.2px;color:var(--gray-600);cursor:pointer}
+.healthcheck li input[type="checkbox"]{margin-top:3px;width:17px;height:17px;flex-shrink:0;accent-color:var(--brand,#2D1B69);cursor:pointer}
 .flowbox{background:#fff;border-radius:var(--r-lg);padding:30px;border:1px solid var(--gray-200);box-shadow:var(--sh-sm)}
 .flowbox h4{font-size:14.5px;color:var(--purple-deep);margin-bottom:var(--s4);font-family:var(--font-body);font-weight:700;text-transform:uppercase;letter-spacing:.8px}
 .flow{list-style:none;counter-reset:fl}
